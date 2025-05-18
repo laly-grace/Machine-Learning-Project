@@ -27,7 +27,7 @@ export default function RegisterForm() {
     setError(null);
 
     try {
-      await axios.post("/api/register", {
+      await axios.post("/register", {
         name: form.name,
         email: form.email,
         password: form.password,
@@ -40,7 +40,7 @@ export default function RegisterForm() {
     } catch (err) {
       console.error(err);
       setError(
-        err.response?.data?.message || "Registration failed. Please try again."
+        err.response?.data?.error || "Registration failed. Please try again."
       );
     } finally {
       setIsLoading(false);

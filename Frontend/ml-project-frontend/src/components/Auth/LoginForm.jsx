@@ -15,11 +15,12 @@ export default function LoginForm() {
     setError(null);
 
     try {
-      const res = await axios.post("/api/login", form);
+      const res = await axios.post("/login", form);
       localStorage.setItem("token", res.data.token);
 
       // Success animation before navigation
       await new Promise((resolve) => setTimeout(resolve, 1000));
+      alert("Login successful!");
       navigate("/profile");
     } catch (err) {
       console.error(err);

@@ -7,6 +7,16 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const isAuthenticated = !!localStorage.getItem("token");
 
+  let userEmail = "";
+  if (isAuthenticated) {
+    try {
+      const decoded = jwtDecode(token);
+      userEmail = decoded.email;
+    } catch (err) {
+      console.error("Invalid token");
+    }
+  }
+
   const handleLogout = () => {
     localStorage.removeItem("token");
     navigate("/");
@@ -89,19 +99,18 @@ export default function Navbar() {
                       onClick={handleLogout}
                       className="relative px-3 py-2 text-sm font-medium text-white group"
                     >
-                      <span className="relative z-10">Logout</span>
-                      <span className="absolute inset-0 bg-white rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
-                      <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-red-400 group-hover:w-4/5 group-hover:left-1/10 transition-all duration-300"></span>
+                      <div className="px-4 py-2 rounded-full bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-medium text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 hover:from-yellow-300 hover:to-pink-400">
+                        <span className="relative z-10">Logout</span>
+                        <span className="absolute inset-0 bg-white rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-300"></span>
+                        <span className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-red-400 group-hover:w-4/5 group-hover:left-1/10 transition-all duration-300"></span>
+                      </div>
                     </button>
                   </>
                 )}
                 {/* Special CTA button */}
-                <Link
-                  to="/special"
-                  className="px-4 py-2 rounded-full bg-gradient-to-r from-yellow-400 to-pink-500 text-white font-medium text-sm shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300 hover:from-yellow-300 hover:to-pink-400"
-                >
+                {/* <Link to="/special" className="">
                   Special Offer!
-                </Link>
+                </Link> */}
               </div>
             </div>
 
