@@ -35,8 +35,8 @@ export default function RegisterForm() {
 
       // Success animation before navigation
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      alert("Registration successful! Please login.");
-      navigate("/");
+      navigate("/profile");
+      // alert("Registration successful! Please login.");
     } catch (err) {
       console.error(err);
       setError(

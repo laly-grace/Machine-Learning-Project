@@ -20,7 +20,7 @@ export default function LoginForm() {
 
       // Success animation before navigation
       await new Promise((resolve) => setTimeout(resolve, 1000));
-      alert("Login successful!");
+      // alert("Login successful!");
       navigate("/profile");
     } catch (err) {
       console.error(err);
